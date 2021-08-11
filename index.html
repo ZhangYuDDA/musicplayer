@@ -58,7 +58,7 @@
 
             </div>
             <div class="footer">
-                <audio :src="musicSrc" @play="play" @pause="pause" controls="controls" autoplay="autoplay" loop="loop"
+                <audio :src="musicSrc" @play="nowPlay" @pause="nowPause" controls="controls" autoplay="autoplay" loop="loop"
                     class="myAudio"></audio>
             </div>
             <div class="video_con" v-show="isPlayMV">

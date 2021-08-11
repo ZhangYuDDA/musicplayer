@@ -74,14 +74,15 @@ var app = new Vue({
             }, function (err) { })
         },
         //播放音乐时添加动画
-        play: function () {
+        nowPlay: function () {
             this.isPlaying = true;
         },
-        pause: function () {
+        nowPause: function () {
             this.isPlaying = false;
         },
         //播放mv
         playMV: function (mvid) {
+            document.querySelector('.myAudio').pause();
             var that = this;
             axios.get('https://autumnfish.cn/mv/url?id=' + mvid).then(function (response) {
                 // console.log(response);
