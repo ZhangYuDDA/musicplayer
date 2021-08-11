@@ -26,7 +26,7 @@
                         <li v-for="item in musicArr">
                             <a href="javascript:;" @click="playMusic(item.id)"> <img src="images/play.png" alt=""
                                     class="play_icon"></a>
-                            <span>{{item.name}}</span>
+                            <span :title="item.name">{{item.name}}</span>
                             <a href="javascript:;" v-if="item.mvid != 0" @click="playMV(item.mvid)" class="mvIcon"></a>
                         </li>
 
@@ -58,8 +58,8 @@
 
             </div>
             <div class="footer">
-                <audio :src="musicSrc" @play="nowPlay" @pause="nowPause" controls="controls" autoplay="autoplay" loop="loop"
-                    class="myAudio"></audio>
+                <audio :src="musicSrc" @play="nowPlay" @pause="nowPause" controls="controls" autoplay="autoplay"
+                    loop="loop" class="myAudio"></audio>
             </div>
             <div class="video_con" v-show="isPlayMV">
                 <video :src="mvUrl" autoplay="autoplay" controls="controls" loop="loop"></video>

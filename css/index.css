@@ -130,6 +130,13 @@ a {
     color: #333;
     font-size: 12px;
     line-height: 40px;
+     /* 单行文字溢出省略 */
+    /* 首先强制一行显示 */
+    white-space: nowrap;
+    /* 溢出隐藏 */
+    overflow: hidden;
+    /* 文字溢出省略号 */
+    text-overflow: ellipsis;
 }
 .music_list ul li:nth-child(odd) {
     background-color: rgba(240, 240, 240, 0.3);
