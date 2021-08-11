@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>章鱼音乐播放器</title>
+    <!-- favicon制作 -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="player_wrap" id="app">
+            <div class="search_bar">
+                <span>章鱼音乐播放器</span>
+                <input type="text" v-model="searchContent" @keyup.enter="searchMusic" placeholder="搜索">
+                <a href="javascript::" @click="searchMusic"><img src="images/zoom.png" alt=""></a>
+            </div>
+            <div class="player_main">
+                <div class="music_list">
+                    <ul>
+                        <li v-for="item in musicArr">
+                            <a href="javascript:;" @click="playMusic(item.id)"> <img src="images/play.png" alt=""
+                                    class="play_icon"></a>
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" v-if="item.mvid != 0" @click="playMV(item.mvid)" class="mvIcon"></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <img src="images/line.png" alt="" class="line_left">
+                <div class="music_main" :class="{playing: isPlaying}">
+                    <img src="images/player_bar.png" class="player_bar" alt="">
+                    <img src="images/disc.png" class="disc_img autoRotate" alt="">
+                    <img :src="picUrl" alt="" class="cover_img autoRotate">
+                </div>
+                <img src="images/line.png" alt="" class="line-right">
+                <div class="comment">
+                    <h4>热门评论</h4>
+                    <div class="detail">
+                        <dl v-for="item in hotComments">
+                            <dt>
+                                <img :src="item.user.avatarUrl" alt="">
+                            </dt>
+                            <dd class="name">{{item.user.nickname}}</dd>
+                            <dd>
+                                <div class="comment_content">{{item.content}}</div>
+                            </dd>
+                        </dl>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="footer">
+                <audio :src="musicSrc" @play="play" @pause="pause" controls="controls" autoplay="autoplay" loop="loop"
+                    class="myAudio"></audio>
+            </div>
+            <div class="video_con" v-show="isPlayMV">
+                <video :src="mvUrl" autoplay="autoplay" controls="controls" loop="loop"></video>
+                <!-- 遮罩层 -->
+                <div class="mask"></div>
+                <a href="javascript:;" @click="stopMV" class="shutoffBtn" title="关闭"> <img src="images/shutoff.png"
+                        alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<!-- 引入js -->
+<script src="js/index.js"></script>
+
+</html>
